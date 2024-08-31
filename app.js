@@ -5,13 +5,17 @@ const container = document.querySelector('.container')
     gridSize(gridNo * gridNo)
     colorDivs()
 
-// prompt for input user for grid size
+// prompt for user-input for grid size
     const sizeButton = document.querySelector('#button')
     sizeButton.addEventListener("click", () => {
         do {
             gridRemove(gridNo * gridNo)
-            gridNo = prompt("Enter a grid-size ranging upto 100:");
-            if (gridNo > 100 || gridNo < 1) continue;
+            gridNo = prompt("Enter an integer for no. of grids per side:");
+            if (gridNo > 100 || gridNo < 1)
+                {
+                    alert("The value should range from 1 to 100")
+                    continue;
+                }
             gridSize(gridNo * gridNo)
             colorDivs()
         } while (gridNo > 100 || gridNo < 1);
@@ -30,7 +34,7 @@ const container = document.querySelector('.container')
         }
     }
 
-// function to make grids/the divs` and adjust their size as well
+// function to make grids/the divs'
     function gridSize (grids){
         for (let i = 1; i <= grids; i++)
         {
@@ -38,15 +42,18 @@ const container = document.querySelector('.container')
             const box = document.createElement('div')
             box.setAttribute("class", "theDiv");
             container.appendChild(box);
-            
-            // adjust size
-            const size = Math.sqrt((960 * 960) / grids) + "px"
-            const divs = document.querySelectorAll('.theDiv')
-            divs.forEach((theDiv) => {
-                theDiv.style.width = size
-                theDiv.style.height = size
-            })
         }
+        gridAdjust()
+    }
+
+// function to adjust size of the grids
+    function gridAdjust(){
+        const size = Math.sqrt((600 * 600) / (gridNo * gridNo)) + "px"
+        const divs = document.querySelectorAll('.theDiv')
+        divs.forEach((theDiv) => {
+            theDiv.style.width = size
+            theDiv.style.height = size
+        })
     }
 
 // to add color black when mouse is hovered
@@ -54,7 +61,18 @@ const container = document.querySelector('.container')
         const divs = document.querySelectorAll('.theDiv')
         divs.forEach((theDiv) => {
             theDiv.addEventListener("mouseover", () => {
-                theDiv.style.backgroundColor = "black"
+                theDiv.style.backgroundColor = randomRgb()
             })
         })
+    }
+
+// to add random color
+    function randomRgb()
+    {
+        const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+        const r = randomBetween(0, 255);
+        const g = randomBetween(0, 255);
+        const b = randomBetween(0, 255);
+        const rgb = "rgb("+ r + ", " + g + ", " + b + ")"; // Collect all to a css color string
+        return rgb;
     }

@@ -65,7 +65,7 @@ const container = document.querySelector('.container')
             })
         })
     }
-
+    
 // to add random color
     function randomRgb()
     {

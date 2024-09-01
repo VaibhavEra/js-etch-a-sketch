@@ -62,10 +62,10 @@ const container = document.querySelector('.container')
         divs.forEach((theDiv) => {
             theDiv.addEventListener("mouseover", () => {
                 theDiv.style.backgroundColor = randomRgb()
-                
+
+                theDiv.style.opacity -= '-0.1'
                 let currentBrightness = theDiv.dataset.brightness || 100;
                 currentBrightness = parseInt(currentBrightness) - 10;
-            
                 if (currentBrightness >= 0) {
                     theDiv.style.filter = `brightness(${currentBrightness}%)`;
                     theDiv.dataset.brightness = currentBrightness;

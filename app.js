@@ -55,13 +55,14 @@ const container = document.querySelector('.container')
             theDiv.style.height = size
         })
     }
-
+    
 // to add color black when mouse is hovered
     function colorDivs(){
         const divs = document.querySelectorAll('.theDiv')
         divs.forEach((theDiv) => {
             theDiv.addEventListener("mouseover", () => {
                 theDiv.style.backgroundColor = randomRgb()
+                theDiv.style.opacity -= '-0.1'
             })
         })
     }

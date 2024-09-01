@@ -56,13 +56,20 @@ const container = document.querySelector('.container')
         })
     }
     
-// to add color black when mouse is hovered
+// to add color and darken when mouse is hovered
     function colorDivs(){
         const divs = document.querySelectorAll('.theDiv')
         divs.forEach((theDiv) => {
             theDiv.addEventListener("mouseover", () => {
                 theDiv.style.backgroundColor = randomRgb()
-                theDiv.style.opacity -= '-0.1'
+                
+                let currentBrightness = theDiv.dataset.brightness || 100;
+                currentBrightness = parseInt(currentBrightness) - 10;
+            
+                if (currentBrightness >= 0) {
+                    theDiv.style.filter = `brightness(${currentBrightness}%)`;
+                    theDiv.dataset.brightness = currentBrightness;
+                }
             })
         })
     }

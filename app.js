@@ -11,14 +11,14 @@ const container = document.querySelector('.container')
         do {
             gridRemove(gridNo * gridNo)
             gridNo = prompt("Enter an integer for no. of grids per side:");
-            if (gridNo > 100 || gridNo < 1)
+            if (gridNo > 100 || gridNo < 1 || !Number.isInteger(gridNo))
                 {
-                    alert("The value should range from 1 to 100")
+                    alert("The value should range from 1 to 100\nAnd it should be an INTEGER!")
                     continue;
                 }
             gridSize(gridNo * gridNo)
             colorDivs()
-        } while (gridNo > 100 || gridNo < 1);
+        } while (gridNo > 100 || gridNo < 1 || !Number.isInteger(gridNo));
     })
 
 // function to remove existing grids/ the divs'

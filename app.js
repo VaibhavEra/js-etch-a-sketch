@@ -10,12 +10,17 @@ const container = document.querySelector('.container')
     sizeButton.addEventListener("click", () => {
         do {
             gridRemove(gridNo * gridNo)
-            gridNo = prompt("Enter an integer for no. of grids per side:");
-            if (gridNo > 100 || gridNo < 1 || !Number.isInteger(gridNo))
+            gridNo = parseFloat(prompt("Enter an integer for no. of grids per side:"));
+            if (gridNo > 100 || gridNo < 1)
                 {
                     alert("The value should range from 1 to 100\nAnd it should be an INTEGER!")
                     continue;
                 }
+            else if (!Number.isInteger(gridNo))
+            {
+                alert(`${gridNo} isn't an integer. Please input INT`)
+                continue;
+            }
             gridSize(gridNo * gridNo)
             colorDivs()
         } while (gridNo > 100 || gridNo < 1 || !Number.isInteger(gridNo));
